@@ -30,37 +30,54 @@
 //$colors_bg = imageColorAllocate($img,220,140,100);
 //header("Content-type: image/png");
 //imagejpeg("$im\n");
-$array = range(1, 10);
-shuffle($array);
+$arr1 = array(
+    "key1" => "Brain",
+    "key2" => "Academy",
+    "key3" => "students",
+    "key4" => "are simply the best!",
+);
+var_dump($arr1);
+echo $arr1;
+$arr1["key4"]="will be programmers soon!";
+var_dump($arr1);
+print_r($arr1);
 
-echo 'IMPLODE ARRAY' . PHP_EOL;
-echo 'Original array: ' . PHP_EOL;
-print_r($array);
-echo 'First element: ' . current($array) . PHP_EOL;
-echo 'Last element: ' . end($array) . PHP_EOL;
-echo 'Elements in array: ' . count($array) . PHP_EOL;
-echo 'Result string: ' . implode(', ', $array);
+unset ($arr1["key4"]);
+var_dump($arr1);
+$arr1["key4"]="will be programmers soon!";
 
-echo PHP_EOL . PHP_EOL;
+print_r(array_count_values ($arr1));
 
-echo 'EXPLODE STRING' . PHP_EOL;
-$string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum sem sed leo dictum, ut maximus orci commodo. Ut nec.';
-echo 'Original text: ' . PHP_EOL . $string . PHP_EOL;
-$arrayFromString = explode(' ', $string);
-print_r($arrayFromString);
+$arr2 = array(
+    "key5" => "i",
+    "key6" => "will be",
+    "key7" => "programmer soon",
+);
+print_r(array_merge($arr1,$arr2));
+var_dump(array_merge($arr1,$arr2));
 
-echo PHP_EOL . PHP_EOL;
+$arrNum = array (12,31,47,53,80,53,4,38);
+$arrNum1 = array (11,30,46,52,79,52,3,37);
+var_dump ($arrNum);
 
-echo 'MARGE TWO ARRAYS' . PHP_EOL;
-$firstArray = [];
-array_push($firstArray, 'banana');
-array_push($firstArray, 'apple');
-array_push($firstArray, 'grape');
-echo 'Array one:' . PHP_EOL;
-print_r($firstArray);
-$secondArray = ['raspberry', 'orange'];
-echo 'Array two:' . PHP_EOL;
-print_r($secondArray);
-echo 'Result array:' . PHP_EOL;
-print_r(array_merge($firstArray, $secondArray));
+var_dump (array_rand($arrNum));
+
+echo "Delete first value from array arrNum <br>";
+var_dump (array_shift($arrNum));
+var_dump ($arrNum);
+
+array_unshift($arrNum,12);
+echo "Add first value into array arrNum <br>";
+var_dump ($arrNum);
+echo "Combine of arrays arrNum $ arrNum1 <br>";
+var_dump (array_combine($arrNum,$arrNum1));
+echo "Values of array arrNum <br>";
+print_r (array_values($arrNum));
+
+$arrNum2 = array (11,30, 54, 54, 77, 44, 76, 87, 32, 54, 76, 88, 98, 3, 6, 3 ,65, 46,52,79,52,3,37);
+echo "Sum of numbers array arrNum2 <br>";
+print_r (count ($arrNum2));
+
+print_r (rsort($arrNum2,1));
+
 ?>
