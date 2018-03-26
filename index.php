@@ -1,83 +1,129 @@
 <?php
-//echo "Hello, world!\n";
-//$arr = array(1,2,3,4,5,56,5,6,67,6,7,676765,456,5,6,343,43,434);
-//echo "$b<br>";
-//echo "I'm here<br>";
-//echo "I'm here<br>";
-//$tmp=222;
-//echo $tmp;
-//$a = 'command "Leverpool" has been winned<br>';
-//$d= 777;
-//$b= 'Value of variable $a<br>';
-//$c= "Value of variable $d";
-//var_dump ($c);
-//$abc = strlen($b);
-//echo $abc;
-//$pos = strpos($b, 'of');
-//echo $pos;
-//$arr = [1,2,3,4,5,6,7,8,900];
-//var_dump ($arr);
-//$arr[1];
-////получим 2-ку
-//echo $arr[1];
-//$arr = [1,2,3,4,[345,4545,2342],6,7,8,900];
-//echo $arr[4][2];
-//$img = imageCreate(1000, 700);
-//$colors_bg = imageColorAllocate($img,120,100,180);
-//header("Content-type: image/png");
-//imagejpeg($img);
-//$im = imageCreate(700, 200);
-//$colors_bg = imageColorAllocate($img,220,140,100);
-//header("Content-type: image/png");
-//imagejpeg("$im\n");
-$arr1 = array(
-    "key1" => "Brain",
-    "key2" => "Academy",
-    "key3" => "students",
-    "key4" => "are simply the best!",
-);
-var_dump($arr1);
-echo $arr1;
-$arr1["key4"]="will be programmers soon!";
-var_dump($arr1);
-print_r($arr1);
+// Task1
+//$a = 80;
+//if ($a %2==0) {
+//    var_dump ((boolean)"$a");
+//} else {
+//    echo "false";
+//}
 
-unset ($arr1["key4"]);
-var_dump($arr1);
-$arr1["key4"]="will be programmers soon!";
+//Task2
+//$a=5;
+//$b=8;
+//$c = pow (5,8);
+//echo "$c";
 
-print_r(array_count_values ($arr1));
+//Task3
+//$str = "atlantic ocean is the second largest ocean in the world";
+//$q = strrev($str);
+//echo "$q";
+//$chars = preg_split('//', $str, -1, PREG_SPLIT_NO_EMPTY);
+//var_dump(array_count_values ($chars));
+//echo "<br>";
+//foreach (count_chars($str, 1) as $i => $val) {
+//    var_dump(chr($i));
+//    var_dump($val);
+//}
 
-$arr2 = array(
-    "key5" => "i",
-    "key6" => "will be",
-    "key7" => "programmer soon",
-);
-print_r(array_merge($arr1,$arr2));
-var_dump(array_merge($arr1,$arr2));
+//Task6
+//$arr = [1, 2, 3, 4, 5];
+//foreach ($arr as $elem) {
+//    echo $arr2 = ($elem * $elem);
+//    var_dump ($arr2 = array([$arr2]));
+//}
+//var_dump($arr);
 
-$arrNum = array (12,31,47,53,80,53,4,38);
-$arrNum1 = array (11,30,46,52,79,52,3,37);
-var_dump ($arrNum);
+//Task9
+//class Logger {
+//    public static $PATH = "logs"; // Адрес для папки с лог файлами. Относительно той страницы,
+//    // на которой происходит обращение к логированию.
+//    // Например, при логировании события на странице personal.php (находится в корне),
+//    // обращение будет к каталогу: корень/logs
+//    protected static $loggers = array(); // Массив с разными файлами логгеров
+//    protected $name; // Имя текущего логгера
+//    protected $file; // Путь к файлу, с которым он работает
+//    protected $fp; // Файловый поток, через который осуществляется запись
+//    // КОНСТРУКТОР
+//    // Конструктор будет использоваться внутри класса,
+//    // непосредственно при логировании мы будем пользоваться функцией getLogger
+//    public function __construct($name, $file = NULL) {
+//        if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] != "") $websiteRoot = $_SERVER['DOCUMENT_ROOT']; else $websiteRoot = "/var/www/dimau/data/www/svobodno.org"; // так как cron не инициализирует переменную окружения $_SERVER['DOCUMENT_ROOT'] (а точнее инициализирует ее пустой строкой), приходиться использовать костыль
+//        Logger::$PATH = $websiteRoot . '/logs';
+//        $this->name = $name;
+//        $this->file = $file;
+//        $this->open();
+//    }
+//    // ДЕСТРУКТОР
+//    public function __destruct() {
+//        fclose($this->fp);
+//    }
+//    // Метод инициализирует файловый поток. Если переменная $file не задана, то будет открыт файл
+//    // с тем же именем, что и логгер.
+//    public function open() {
+//        if (self::$PATH == null) {
+//            return;
+//        }
+//        $this->fp = fopen($this->file == null ? self::$PATH . '/' . $this->name . '.log' : self::$PATH . '/' . $this->file, 'a+');
+//    }
+//    /**
+//     * Функция возвращает нам логгер, имя которого мы указали
+//     * @param string $name имя логгера, который нужно вернуть
+//     * @param null|string $file имя файла логгера, который нужно создать/вернуть
+//     * @return Logger возвращает объект класса Logger
+//     */
+//    public static function getLogger($name = 'root', $file = null) {
+//        if (!isset(self::$loggers[$name])) {
+//            self::$loggers[$name] = new Logger($name, $file);
+//        }
+//        return self::$loggers[$name];
+//    }
+//    // Метод заносит в лог файл сообщение, переданное в качестве аргумента
+//    public function log($message) {
+//        if (!is_string($message)) {
+//            // если мы хотим вывести, к примеру, массив
+//            $this->logPrint($message);
+//            return;
+//        }
+//        $log = '';
+//        $log .= "\r\n"; // Добавим перенос строки для виндовс (смотреть в блокноте)
+//        // зафиксируем дату и время происходящего
+//        $currentDate = new DateTime(NULL, new DateTimeZone('Asia/Yekaterinburg'));
+//        $currentDate = $currentDate->format("D M d H:i:s Y");
+//        $log .= "[" . $currentDate . "] ";
+//        // если мы отправили в функцию больше одного параметра,
+//        // выведем их тоже
+//        if (func_num_args() > 1) {
+//            $params = func_get_args();
+//            $message = call_user_func_array('sprintf', $params);
+//        }
+//        $log .= $message;
+//        // запись в файл
+//        $this->_write($log);
+//    }
+//    public function logPrint($obj) {
+//        // заносим все выводимые данные в буфер
+//        ob_start();
+//        print_r($obj);
+//        // очищаем буфер
+//        $ob = ob_get_clean();
+//        // записываем
+//        $this->log($ob);
+//    }
+//    // Метод осуществляет непосредственную запись в файл лоигруемой строки
+//    protected function _write($string) {
+//        fwrite($this->fp, $string);
+//    }
+//}
 
-var_dump (array_rand($arrNum));
-
-echo "Delete first value from array arrNum <br>";
-var_dump (array_shift($arrNum));
-var_dump ($arrNum);
-
-array_unshift($arrNum,12);
-echo "Add first value into array arrNum <br>";
-var_dump ($arrNum);
-echo "Combine of arrays arrNum $ arrNum1 <br>";
-var_dump (array_combine($arrNum,$arrNum1));
-echo "Values of array arrNum <br>";
-print_r (array_values($arrNum));
-
-$arrNum2 = array (11,30, 54, 54, 77, 44, 76, 87, 32, 54, 76, 88, 98, 3, 6, 3 ,65, 46,52,79,52,3,37);
-echo "Sum of numbers array arrNum2 <br>";
-print_r (count ($arrNum2));
-
-print_r (rsort($arrNum2,1));
+//Task5
+//$a=555;
+//$a= array (1,4,67,3,22,56);
+//if (is_integer($a)){
+//    echo "value of int a is '$a'";
+//} else {
+//    for ($i=0; $i<= count($a); $i++) {
+//        echo "value of index $i in array a is $a[$i]<br>";
+//    }
+//}
 
 ?>
