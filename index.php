@@ -1,17 +1,154 @@
 <?php
-// Task1
-//$a = 80;
-//if ($a %2==0) {
-//    var_dump ((boolean)"$a");
-//} else {
-//    echo "false";
-//}
 
-//Task2
-//$a=5;
-//$b=8;
-//$c = pow (5,8);
-//echo "$c";
+use Figures\Figures;
+use Figures\Rectangle;
+use Figures\Square;
+
+//include_once 'Figures.php';
+//include_once 'Rectangle.php';
+//include_once 'Square.php';
+include_once 'Teapot.php';
+
+$teapot = new teapot ($teapot,$model,$black,3,true);
+echo $teapot->fill(2);
+echo $teapot->is_connected(false);
+echo $teapot->pour_out(2.4);
+echo $teapot->turn_on(1,5);
+
+$host = '127.0.0.1';
+$db   = 'test';
+$user = 'root';
+$pass = '';
+$charset = 'utf8';
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$opt = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+$pdo = new PDO($dsn, $user, $pass, $opt);
+
+//УДАЛЕНИЕ
+//$query = $pdo->prepare("DELETE FROM groups WHERE name = 'New group'");
+//$query->execute ();
+
+
+//$query = $pdo->query('SELECT students.name, surname, groups.name
+//FROM students LEFT JOIN groups ON students.group_id = groups.id
+//WHERE surname = "Иванов"');
+//$query->setFetchMode(PDO::FETCH_NUM);
+//$result = $query->fetchAll();
+//var_dump($result);
+
+
+//ВСТАВКА
+//$query = $pdo->prepare ('INSERT INTO students (name, surname) VALUES (?,?)');
+//$query->execute (['New', 'Student']);
+//$query->execute (['One more', 'Student']);
+
+
+//$query = $pdo->prepare ('INSERT INTO students (name, surname) VALUES (::name,::surname)');
+//$query->execute (['name'=>'Student', 'surname'=>'New']);
+//$query = $pdo->prepare ('INSERT INTO groups (name) VALUES (?)');
+//$query->execute (['New group']);
+
+
+
+// ПОСТРОЕНИЕ АВТОЗАГРУЗЧИКА:
+//spl_autoload_register(function ($className) {
+//    include_once str_replace('\\','/',$className) . '.php';
+//});
+
+
+//комманды для SQL
+
+//CREATE TABLE students(
+//    id INT UNSIGNED AUTO_INCREMENT,
+//    name VARCHAR (100) NOT NULL,
+//    surname VARCHAR (100) NOT NULL,
+//    PRIMARY KEY (id)
+//    )
+////
+//CREATE TABLE subjects(
+//    id INT UNSIGNED AUTO_INCREMENT,
+//	  name VARCHAR (30) NOT NULL, UNIQUE
+//    PRIMARY KEY (id)
+//    )
+
+//INSERT INTO groups (name) VALUES ("Группа2"), ("Группа3"),("Группа4"),("Группа5");
+//
+//ALTER TABLE students ADD COLUMN group_id INT UNSIGNED;
+//
+//ALTER TABLE students ADD CONSTRAINT fk_students_groups FOREIGN KEY (group_id) REFERENCES groups (id);
+
+//INSERT INTO `students` (`id`, `name`, `surname`, `group_id`) VALUES (NULL, 'Петя', 'Иванов', '3');
+
+//SELECT * FROM students WHERE surname = "Иванов";
+//
+//SELECT s.name, surname, g.name
+//FROM students as s, groups as g
+//WHERE s.group_id = g.id AND surname = "Иванов";
+//
+//SELECT students.name, surname, groups.name
+//FROM students LEFT JOIN groups ON students.group_id = groups.id
+//WHERE surname = "Иванов";
+
+//CREATE TABLE marks (
+//    id INT UNSIGNED AUTO_INCREMENT,
+//    mark TINYINT UNSIGNED NOT NULL,
+//    subject_id INT UNSIGNED NOT NULL,
+//    student_id INT UNSIGNED NOT NULL,
+//    PRIMARY KEY (id),
+//    FOREIGN KEY (subject_id) REFERENCES subjects(id),
+//    FOREIGN KEY (student_id) REFERENCES students(id)
+//)
+
+//CREATE TABLE sales (
+//    id INT UNSIGNED AUTO_INCREMENT,
+//    date_of_sale DATE NOT NULL,
+//    goods_id INT UNSIGNED NOT NULL,
+//    sellers_id INT UNSIGNED NOT NULL,
+//    PRIMARY KEY (id),
+//    FOREIGN KEY (goods_id) REFERENCES goods(id),
+//    FOREIGN KEY (sellers_id) REFERENCES sellers(id)
+//)
+
+//SELECT sellers.name, surname, goods.name
+//FROM sellers LEFT JOIN goods ON sellers.goods_id = goods.id
+//WHERE surname = "Иванов";
+
+//SELECT *
+//FROM students LEFT JOIN groups ON students.group_id = groups.id
+//LEFT JOIN marks ON students.id = marks.student_id
+
+//$rectangle = new Rectangle(68,770);
+//echo $rectangle->getArea();
+//echo '<br>';
+//echo $rectangle->getPerimeter();
+//echo '<br>';
+//echo $rectangle->getName();
+//echo '<br>';
+
+//echo Figures::$description;
+//echo '<br>';
+//echo '<br>';
+//echo '<br>';
+//$square = new Square(65);
+//echo $square->getArea();
+//echo '<br>';
+//echo $square->getPerimeter();
+//echo '<br>';
+//echo $square->getName();
+//echo '<br>';
+//echo '<br>';
+//echo '<br>';
+//$circle = new Circle(6);
+//echo '<br>';
+//echo $circle->getArea();
+//echo '<br>';
+//echo $circle->getPerimeter();
+//echo '<br>';
+//echo $circle->getName();
 
 //Task3
 //$str = "atlantic ocean is the second largest ocean in the world";
@@ -32,89 +169,6 @@
 //    var_dump ($arr2 = array([$arr2]));
 //}
 //var_dump($arr);
-
-//Task9
-//class Logger {
-//    public static $PATH = "logs"; // Адрес для папки с лог файлами. Относительно той страницы,
-//    // на которой происходит обращение к логированию.
-//    // Например, при логировании события на странице personal.php (находится в корне),
-//    // обращение будет к каталогу: корень/logs
-//    protected static $loggers = array(); // Массив с разными файлами логгеров
-//    protected $name; // Имя текущего логгера
-//    protected $file; // Путь к файлу, с которым он работает
-//    protected $fp; // Файловый поток, через который осуществляется запись
-//    // КОНСТРУКТОР
-//    // Конструктор будет использоваться внутри класса,
-//    // непосредственно при логировании мы будем пользоваться функцией getLogger
-//    public function __construct($name, $file = NULL) {
-//        if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] != "") $websiteRoot = $_SERVER['DOCUMENT_ROOT']; else $websiteRoot = "/var/www/dimau/data/www/svobodno.org"; // так как cron не инициализирует переменную окружения $_SERVER['DOCUMENT_ROOT'] (а точнее инициализирует ее пустой строкой), приходиться использовать костыль
-//        Logger::$PATH = $websiteRoot . '/logs';
-//        $this->name = $name;
-//        $this->file = $file;
-//        $this->open();
-//    }
-//    // ДЕСТРУКТОР
-//    public function __destruct() {
-//        fclose($this->fp);
-//    }
-//    // Метод инициализирует файловый поток. Если переменная $file не задана, то будет открыт файл
-//    // с тем же именем, что и логгер.
-//    public function open() {
-//        if (self::$PATH == null) {
-//            return;
-//        }
-//        $this->fp = fopen($this->file == null ? self::$PATH . '/' . $this->name . '.log' : self::$PATH . '/' . $this->file, 'a+');
-//    }
-//    /**
-//     * Функция возвращает нам логгер, имя которого мы указали
-//     * @param string $name имя логгера, который нужно вернуть
-//     * @param null|string $file имя файла логгера, который нужно создать/вернуть
-//     * @return Logger возвращает объект класса Logger
-//     */
-//    public static function getLogger($name = 'root', $file = null) {
-//        if (!isset(self::$loggers[$name])) {
-//            self::$loggers[$name] = new Logger($name, $file);
-//        }
-//        return self::$loggers[$name];
-//    }
-//    // Метод заносит в лог файл сообщение, переданное в качестве аргумента
-//    public function log($message) {
-//        if (!is_string($message)) {
-//            // если мы хотим вывести, к примеру, массив
-//            $this->logPrint($message);
-//            return;
-//        }
-//        $log = '';
-//        $log .= "\r\n"; // Добавим перенос строки для виндовс (смотреть в блокноте)
-//        // зафиксируем дату и время происходящего
-//        $currentDate = new DateTime(NULL, new DateTimeZone('Asia/Yekaterinburg'));
-//        $currentDate = $currentDate->format("D M d H:i:s Y");
-//        $log .= "[" . $currentDate . "] ";
-//        // если мы отправили в функцию больше одного параметра,
-//        // выведем их тоже
-//        if (func_num_args() > 1) {
-//            $params = func_get_args();
-//            $message = call_user_func_array('sprintf', $params);
-//        }
-//        $log .= $message;
-//        // запись в файл
-//        $this->_write($log);
-//    }
-//    public function logPrint($obj) {
-//        // заносим все выводимые данные в буфер
-//        ob_start();
-//        print_r($obj);
-//        // очищаем буфер
-//        $ob = ob_get_clean();
-//        // записываем
-//        $this->log($ob);
-//    }
-//    // Метод осуществляет непосредственную запись в файл лоигруемой строки
-//    protected function _write($string) {
-//        fwrite($this->fp, $string);
-//    }
-//}
-
 //Task5
 //$a=555;
 //$a= array (1,4,67,3,22,56);
@@ -125,5 +179,3 @@
 //        echo "value of index $i in array a is $a[$i]<br>";
 //    }
 //}
-
-?>
